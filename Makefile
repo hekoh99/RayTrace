@@ -4,7 +4,7 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 FRAMEW = -Lmlx -lmlx -framework OpenGL -framework Appkit
 
-SRCS = main.cpp
+SRCS = main.cpp parse.c parse_objs.c
 INCS = ./includes
 OBJS = $(SRCS:.cpp=.o)
 
