@@ -11,6 +11,10 @@
 # define WIDTH 700
 # define ESC 53
 
+# define CY 1
+# define PL 2
+# define SP 3
+
 typedef struct	s_mlx
 {
 	void	*mlx;
@@ -88,3 +92,8 @@ typedef struct	s_minirt
 
 int	check_file(int ac, char **av);
 void err_handler(char *msg);
+
+t_vec	get_color(char *s);
+t_vec	get_vec(char *s);
+void	parse_line(char *id, char **tockens, t_scene *sc);
+void	parse(t_scene *sc, int fd);
