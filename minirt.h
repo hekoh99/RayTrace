@@ -97,3 +97,15 @@ t_vec	get_color(char *s);
 t_vec	get_vec(char *s);
 void	parse_line(char *id, char **tockens, t_scene *sc);
 void	parse(t_scene *sc, int fd);
+
+void	parse_sphere(t_scene *sc, char **tockens);
+void	parse_cylinder(t_scene *sc, char **tockens);
+void	parse_plane(t_scene *sc, char **tockens);
+
+t_light	*alloc_light(t_scene *sc);
+void	parse_ambient(t_scene *sc, char **tokens);
+void	parse_camera(t_scene *sc, char **tokens);
+void	parse_light(t_scene *sc, char **tokens);
+
+double	ft_atod(const char *str);
+void	free_split(char **s);

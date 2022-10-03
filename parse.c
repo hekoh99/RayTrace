@@ -71,20 +71,20 @@ t_vec	get_vec(char *s)
 	return (cord);
 }
 
-void	parse_line(char *id, char **tockens, t_scene *sc)
+void	parse_line(char *id, char **tokens, t_scene *sc)
 {
 	if (id[0] == 'A' && id[1] == '\0')
-		parse_ambient(sc, tockens);
+		parse_ambient(sc, tokens);
 	else if (id[0] == 'C' && id[1] == '\0')
-		parse_camera(sc, tockens);
+		parse_camera(sc, tokens);
 	else if (id[0] == 'L' && id[1] == '\0')
-		parse_light(sc, tockens);
+		parse_light(sc, tokens);
 	else if (id[0] == 's' && id[1] == 'p' && id[2] == '\0')
-		parse_sphere(sc, tockens);
+		parse_sphere(sc, tokens);
 	else if (id[0] == 'p' && id[1] == 'l' && id[2] == '\0')
-		parse_plane(sc, tockens);
+		parse_plane(sc, tokens);
 	else if (id[0] == 'c' && id[1] == 'y' && id[2] == '\0')
-		parse_cylinder(sc, tockens);
+		parse_cylinder(sc, tokens);
 	else
 		err_handler("invalid object type");
 }
@@ -95,7 +95,7 @@ void	parse(t_scene *sc, int fd)
 
 	while (1)
 	{
-		tokens = ft_split(gnl(fd), ' ');
+		tokens = ft_split(get_next_line(fd), ' ');
 		if (tokens == NULL)
 			break ;
 		if (*tokens)

@@ -1,55 +1,63 @@
 #include "minirt.h"
 
-void	parse_sphere(t_scene *sc, char **tockens)
+void	parse_sphere(t_scene *sc, char **tokens)
 {
 	t_objs	*obj;
 
-	if (!tockens || !tockens[1] || !tockens[2] || !tockens[3] || tockens[4])
-		ft_err("invalid sphere");
-	obj = alloc_obj(sc);
+	obj = (t_objs *)malloc(sizeof(t_objs));
+	obj->next = sc->objs;
+	sc->objs = obj;
+	if (!tokens || !tokens[1] || !tokens[2] || !tokens[3] || tokens[4])
+		err_handler("invalid sphere");
 	obj->type = SP;
-	obj->cen = get_vec(tockens[1]);
-	obj->p.x = ft_atod(tockens[2]);
+	obj->cen = get_vec(tokens[1]);
+	obj->p.x = ft_atod(tokens[2]);
 	if (obj->p.x <= 0)
-		ft_err("invalid diameter sphere");
-	obj->col = get_color(tockens[3]);
+		err_handler("invalid diameter sphere");
+	obj->col = get_color(tokens[3]);
 }
 
-void	parse_cylinder(t_scene *sc, char **tockens)
+void	parse_cylinder(t_scene *sc, char **tokens)
 {
 	t_objs	*obj;
 
-	if (!tockens || !tockens[1] || !tockens[2] || !tockens[3] || !tockens[4]
-		|| !tockens[5] || tockens[6])
-		ft_err("invalid cylinder");
-	obj = alloc_obj(sc);
+	if (!tokens || !tokens[1] || !tokens[2] || !tokens[3] || !tokens[4]
+		|| !tokens[5] || tokens[6])
+		err_handler("invalid cylinder");
+	obj = (t_objs *)malloc(sizeof(t_objs));
+	obj->next = sc->objs;
+	sc->objs = obj;
+
 	obj->type = CY;
-	obj->cen = get_vec(tockens[1]);
-	obj->dir = get_vec(tockens[2]);
+	obj->cen = get_vec(tokens[1]);
+	obj->dir = get_vec(tokens[2]);
 	if (obj->dir.x > 1 || obj->dir.y > 1 || obj->dir.z > 1)
-		ft_err("invalid orientation cylinder");
+		err_handler("invalid orientation cylinder");
 	if (obj->dir.x < -1 || obj->dir.y < -1 || obj->dir.z < -1)
-		ft_err("invalid orientation cylinder");
-	obj->p.x = ft_atod(tockens[3]);
-	obj->p.y = ft_atod(tockens[4]);
+		err_handler("invalid orientation cylinder");
+	obj->p.x = ft_atod(tokens[3]);
+	obj->p.y = ft_atod(tokens[4]);
 	if (obj->p.x <= 0 || obj->p.y <= 0)
-		ft_err("invalid diameter cy");
-	obj->col = get_color(tockens[5]);
+		err_handler("invalid diameter cy");
+	obj->col = get_color(tokens[5]);
 }
 
-void	parse_plane(t_scene *sc, char **tockens)
+void	parse_plane(t_scene *sc, char **tokens)
 {
 	t_objs	*obj;
 
-	if (!tockens || !tockens[1] || !tockens[2] || !tockens[3] || tockens[4])
-		ft_err("invalid plane!");
-	obj = alloc_obj(sc);
+	if (!tokens || !tokens[1] || !tokens[2] || !tokens[3] || tokens[4])
+		err_handler("invalid plane!");
+	obj = (t_objs *)malloc(sizeof(t_objs));
+	obj->next = sc->objs;
+	sc->objs = obj;
+	
 	obj->type = PL;
-	obj->cen = get_vec(tockens[1]);
-	obj->dir = get_vec(tockens[2]);
+	obj->cen = get_vec(tokens[1]);
+	obj->dir = get_vec(tokens[2]);
 	if (obj->dir.x > 1 || obj->dir.y > 1 || obj->dir.z > 1)
-		ft_err("invalid orientation plane");
+		err_handler("invalid orientation plane");
 	if (obj->dir.x < -1 || obj->dir.y < -1 || obj->dir.z < -1)
-		ft_err("invalid orientation plane");
-	obj->col = get_color(tockens[3]);
+		err_handler("invalid orientation plane");
+	obj->col = get_color(tokens[3]);
 }
