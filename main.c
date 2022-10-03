@@ -1,37 +1,41 @@
-#include "./mlx/mlx.h"
-#include <stdio.h>
+#include "minirt.h"
 
-#include <stdio.h>
-
-int	main(void)
+void	init_rt(t_minirt *data)
 {
-    int     i;
-    int     j;
-    double  r;
-    double  g;
-    double  b;
-    int     canvas_width;
-    int     canvas_height;
+	data->mlx.mlx = mlx_init();
+	data->mlx.mlx_win = mlx_new_window(data->mlx.mlx, WIDTH, HIGHT, "miniRT");
+	data->mlx.img = mlx_new_image(data->mlx.mlx, WIDTH, HIGHT);
+	data->mlx.addr = mlx_get_data_addr(data->mlx.img, &data->mlx.bits_per_pixel, \
+	&data->mlx.line_length, &data->mlx.endian);
+}
 
-    // pixel of canvas
-    canvas_width = 256;
-    canvas_height = 256;
+int	ft_close(t_minirt *data)
+{
+	mlx_clear_window(data->mlx.mlx, data->mlx.mlx_win);
+	mlx_destroy_window(data->mlx.mlx, data->mlx.mlx_win);
+	exit(0);
+}
 
-    // render
-    printf("P3\n%d %d\n255\n", canvas_width, canvas_height);
-    j = canvas_height - 1;
-    while (j >= 0)
-    {
-        i = 0;
-        while (i < canvas_width)
-        {
-            r = (double)i / (canvas_width - 1);
-            g = (double)j / (canvas_height - 1);
-            b = 0.25;
-            printf("%d %d %d\n", (int)(255.999 * r), (int)(255.999 * g), (int)(255.999 * b));
-        	i++;
-        }
-    	j--;
-    }
-    return (0);
+int	keybind(int keycode, t_minirt *data)
+{
+	printf("keycode=%d\n", keycode);
+	if (keycode == ESC)
+		ft_close(data);
+	return (0);
+}
+
+int	main(int ac, char **av)
+{
+	t_minirt	data;
+
+	init_rt(&data);
+
+//	mlx_put_image_to_window(data.mlx, data.mlx_win, data.img, 0, 0);
+
+
+	mlx_key_hook(data.mlx.mlx_win, keybind, &data);
+	mlx_hook(data.mlx.mlx_win,  17, 0L, ft_close, &data);
+	mlx_loop(data.mlx.mlx);
+
+	return (0);
 }
