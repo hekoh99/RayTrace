@@ -37,7 +37,7 @@ int	main(int ac, char **av)
 		err_handler("wrong argument");
 	fd = open(av[1], O_RDONLY);
 	init_rt(&data);
-	parse(&data.scene, fd);
+	// parse(&data.scene, fd);
 //	mlx_put_image_to_window(data.mlx, data.mlx_win, data.img, 0, 0);
 
 	mlx_key_hook(data.mlx.mlx_win, keybind, &data);

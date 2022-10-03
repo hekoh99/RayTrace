@@ -4,8 +4,8 @@
 # include <fcntl.h>
 # include <math.h>
 
-#include "./mlx/mlx.h"
-#include "./libft/libft.h"
+#include "../mlx/mlx.h"
+#include "../libft/libft.h"
 
 # define HIGHT 700
 # define WIDTH 700
@@ -90,8 +90,8 @@ typedef struct	s_minirt
 	t_scene		scene;
 }               t_minirt;
 
-int	check_file(int ac, char **av);
-void err_handler(char *msg);
+int		check_file(int ac, char **av);
+void 	err_handler(char *msg);
 
 t_vec	get_color(char *s);
 t_vec	get_vec(char *s);

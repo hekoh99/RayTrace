@@ -5,7 +5,7 @@ CFLAGS = -Wall -Wextra -Werror
 FRAMEW = -Lmlx -lmlx -framework OpenGL -framework Appkit
 
 SRCS = main.c parse.c parse_objs.c utils.c parse_equip.c
-INCS = ./includes
+INCS = ./includes/
 OBJS = $(SRCS:.c=.o)
 
 all : $(NAME)
@@ -15,7 +15,7 @@ $(NAME):		$(OBJS)
 				make -C ./mlx
 				cp ./libft/libft.a libft.a
 				cp ./mlx/libmlx.a ./libmlx.a
-				$(CC) $(OBJS) -o $(NAME) $(FRAMEW)
+				$(CC) $(OBJS) libft.a -I$(INCS) -o $(NAME) $(FRAMEW)
 
 %.o:			%.c
 				$(CC) -I $(INCS) -c $< -o $@
