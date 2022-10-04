@@ -22,7 +22,7 @@ void	parse_cylinder(t_scene *sc, char **tokens)
 	t_objs	*obj;
 
 	if (!tokens || !tokens[1] || !tokens[2] || !tokens[3] || !tokens[4]
-		|| !tokens[5] || tokens[6])
+		|| !tokens[5])
 		err_handler("invalid cylinder");
 	obj = (t_objs *)malloc(sizeof(t_objs));
 	obj->next = sc->objs;

@@ -56,5 +56,4 @@ void	parse_light(t_scene *sc, char **tokens)
 	new->ratio = ft_atod(tokens[2]);
 	if (new->ratio < 0 || new->ratio > 1)
 		err_handler("enter the light brightness ratio in range [0.0,1.0]");
-	new->col = get_color(tokens[3]);
 }

@@ -40,9 +40,10 @@ int	main(int ac, char **av)
 	parse(&data.scene, fd);
 //	mlx_put_image_to_window(data.mlx, data.mlx_win, data.img, 0, 0);
 
-	mlx_key_hook(data.mlx.mlx_win, keybind, &data);
-	mlx_hook(data.mlx.mlx_win,  17, 0L, ft_close, &data);
-	mlx_loop(data.mlx.mlx);
+	// mlx_key_hook(data.mlx.mlx_win, keybind, &data);
+	// mlx_hook(data.mlx.mlx_win,  17, 0L, ft_close, &data);
+	// mlx_loop(data.mlx.mlx);
 
+	print_scene(data.scene);
 	return (0);
 }

@@ -53,7 +53,6 @@ typedef struct s_light
 {
 	t_vec			src;
 	double			ratio;
-	t_vec			col;
 	struct s_light	*next;
 }	t_light;
 
@@ -109,3 +108,6 @@ void	parse_light(t_scene *sc, char **tokens);
 
 double	ft_atod(const char *str);
 void	free_split(char **s);
+
+
+void print_scene(t_scene sc);
