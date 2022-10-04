@@ -92,14 +92,21 @@ void	parse_line(char *id, char **tokens, t_scene *sc)
 void	parse(t_scene *sc, int fd)
 {
 	char	**tokens;
+	char 	*str;
 
 	while (1)
 	{
-		tokens = ft_split(get_next_line(fd), ' ');
+		str = get_next_line(fd);
+		if (!str)
+			break;
+		str = ft_strtrim(str, "\n");
+		tokens = ft_split(str, ' ');
 		if (tokens == NULL)
 			break ;
 		if (*tokens)
+		{
 			parse_line(*tokens, tokens, sc);
+		}
 		free_split(tokens);
 	}
 	close(fd);

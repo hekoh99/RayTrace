@@ -38,8 +38,8 @@ void	parse_camera(t_scene *sc, char **tokens)
 		err_handler("invalid orientation camera");
 	if (sc->cam.dir.x < -1 || sc->cam.dir.y < -1 || sc->cam.dir.z < -1)
 		err_handler("invalid orientation camera");
-	if (sc->cam.dir.x == 0 && sc->cam.dir.y == 0 && sc->cam.dir.z == 0)
-		err_handler("invalid orientation camera");
+	// if (sc->cam.dir.x == 0 && sc->cam.dir.y == 0 && sc->cam.dir.z == 0)
+	// 	err_handler("invalid orientation camera");
 	sc->cam.fov = ft_atod(tokens[3]);
 	if (sc->cam.fov < 0 || sc->cam.fov > 180)
 		err_handler("FOV  in range [0,180]");
