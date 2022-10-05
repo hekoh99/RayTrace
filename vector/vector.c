@@ -18,7 +18,7 @@ t_vec set_vec(t_vec *vec, double x, double y, double z)
 
 double vec_len(t_vec vec)
 {
-    return (sqrt(vec.x * vec.x + vec.y + vec.y + vec.z + vec.z));
+    return (sqrt(vec.x * vec.x + vec.y * vec.y + vec.z * vec.z));
 }
 
 t_vec vec_sum(t_vec vec1, t_vec vec2)
