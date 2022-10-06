@@ -77,7 +77,7 @@ typedef struct      s_light
 {
     t_vec    origin;
     t_vec    light_color;
-    double      bright_ratio;
+    double   bright_ratio;
 } t_light;
 
 typedef struct  s_scene
