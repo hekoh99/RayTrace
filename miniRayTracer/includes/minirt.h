@@ -7,8 +7,8 @@
 #include "../mlx/mlx.h"
 #include "../libft/libft.h"
 
-# define HIGHT 700
-# define WIDTH 700
+# define HIGHT 600
+# define WIDTH 900
 # define ESC 53
 
 # define CY 1

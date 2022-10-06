@@ -23,7 +23,6 @@ int	main(int ac, char **av)
 	fd = open(av[1], O_RDONLY);
 	init_rt(&data);
 	parse(&data.scene, fd);
-//	mlx_put_image_to_window(data.mlx, data.mlx_win, data.img, 0, 0);
 
 	print_scene(data.scene);
 	rt_render(&data);
