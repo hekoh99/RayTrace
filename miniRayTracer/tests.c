@@ -31,7 +31,6 @@ void print_scene(t_scene sc)
     printf("center >> "); print_vec(sc.cam.cen);
     printf("direction >> "); print_vec(sc.cam.dir);
     printf("fov >> "); printf("%lf\n", sc.cam.fov);
-    printf("count >> "); printf("%d\n", sc.cam.count);
 
     printf("-------- light --------\n");
     printf("src pos >> "); print_vec(sc.light->src);

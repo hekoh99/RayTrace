@@ -33,14 +33,6 @@ typedef struct s_vec
 	double	z;
 }	t_vec;
 
-typedef struct s_inter
-{
-	double	t;
-	t_vec	col;
-	t_vec	hit;
-	t_vec	norm;
-}	t_inter;
-
 typedef struct t_cam
 {
 	t_vec	cen;
@@ -60,7 +52,7 @@ typedef struct s_amb
 {
 	t_vec	col;
 	double	ratio;
-	int		count;
+	int 	count;
 }	t_amb;
 
 typedef struct s_objs
@@ -109,5 +101,6 @@ void	parse_light(t_scene *sc, char **tokens);
 double	ft_atod(const char *str);
 void	free_split(char **s);
 
-
 void print_scene(t_scene sc);
+
+void	rt_render(t_minirt *data);
