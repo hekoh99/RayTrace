@@ -15,12 +15,7 @@ t_vec	add_color(t_vec col1, t_vec col2)
 	t_vec	res;
 
 	res = vec_sum(col1, col2);
-	if (res.x > 255)
-		res.x = 255;
-	if (res.y > 255)
-		res.y = 255;
-	if (res.z > 255)
-		res.z = 255;
+	res = vmin(res, create_vec(255, 255, 255));
 	return (res);
 }
 
