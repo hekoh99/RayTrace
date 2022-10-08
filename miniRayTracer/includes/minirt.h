@@ -10,8 +10,8 @@
 # define PI 3.14159265358979323846
 # define EPS 0.0001
 
-# define HEIGHT 1080
-# define WIDTH 720
+# define HEIGHT 600
+# define WIDTH 900
 # define ESC 53
 
 # define CY 1

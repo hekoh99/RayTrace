@@ -8,7 +8,7 @@ void set_camera_param(t_cam *cam)
 	cam->width = cam->aspect_r * cam->height;
 	cam->forward = cam->dir;
 	cam->forward.x += EPS;
-	cam->up = unit_vec(vcross(cam->forward, create_vec(0.0, 1.0, 0.0)));
+	cam->up = unit_vec(vcross(cam->forward, create_vec(0.0, -1.0, 0.0)));
 	cam->right = unit_vec(vcross(cam->forward, cam->up));
 }
 

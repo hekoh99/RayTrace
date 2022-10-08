@@ -38,8 +38,8 @@ void	define_color(t_minirt *data)
 		x = 0;
 		while (x < WIDTH)
 		{
-			data->v = (double)x * 2 / WIDTH - 1;
-			data->u = (double)y * 2 / HEIGHT - 1;
+			data->u = (double)x * 2 / WIDTH - 1;
+			data->v = (double)y * 2 / HEIGHT - 1;
 			data->ray = ray_primary(&data->scene.cam, data->u, data->v); // 대강 이런식으로 구현할 것
 			data->ray.color = get_raycolor(data); // 대강 이런식으로 구현할 것
 			put_color(&data->mlx, x, HEIGHT - 1 - y,

@@ -48,7 +48,7 @@ t_vec	calcul_color(t_scene *sc, t_hit_record hr, t_vec amb)
 		hit_light = vec_sub(light->src, hr.p);
 		d = vdot(unit_vec(hit_light), hr.normal);
 		ret = add_color(ret, amb);
-		if (d > 0)
+		if (d >= 0)
 			ret = add_color(ret, diffuse(hr, light, d));
 	}
 	return (ret);
