@@ -8,8 +8,8 @@ void set_camera_param(t_cam *cam)
 	cam->width = cam->aspect_r * cam->height;
 	cam->forward = cam->dir;
 	cam->forward.x += EPS;
-	cam->up = unit_vec(vcross(cam->forward, create_vec(0.0, -1.0, 0.0)));
-	cam->right = unit_vec(vcross(cam->forward, cam->up));
+	cam->right = unit_vec(vcross(cam->forward, create_vec(0.0, -1.0, 0.0)));
+	cam->up = unit_vec(vcross(cam->forward, cam->right));
 }
 
 t_hit_record find_hitpoint(t_ray *ray, t_objs *objs)
@@ -25,9 +25,20 @@ t_hit_record find_hitpoint(t_ray *ray, t_objs *objs)
         {
             saved = hit_sphere(saved, ray, tmp);
         }
+        else if (tmp->type == PL)
+        {
+            saved = hit_plane(saved, ray, tmp);
+        }
         tmp = tmp->next;
     }
     return (saved);
+}
+
+int	is_inside(t_vec ray, t_vec norm)
+{
+	if (vdot(ray, norm) > 0)
+		return (1);
+	return (0);
 }
 
 t_vec get_raycolor(t_minirt *data)
@@ -40,7 +51,10 @@ t_vec get_raycolor(t_minirt *data)
     if (hr.t > EPS)
 	{
         amb = calcul_ratio(hr.color, data->scene.amb.col, data->scene.amb.ratio);
-        // 카메라가 객체 안에 있는지 위치 파악 필
+        if (is_inside(data->ray.dir, hr.normal)) // 카메라가 객체 안에 있는지 위치 파악
+        {
+            hr.normal = vec_scalar_mul(hr.normal, -1);
+        }
         color = calcul_color(&data->scene, hr, amb);
 		return (color);
 	}
