@@ -58,7 +58,6 @@ t_vec	calcul_color(t_scene *sc, t_hit_record hr, t_vec amb)
 
 	ret = create_vec(0, 0, 0);
 	light = sc->light;
-    // 그림자 구현 필
 	if (!light)
 		return (amb);
 	if (shadow(sc, hr, light))

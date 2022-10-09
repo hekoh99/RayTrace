@@ -83,7 +83,6 @@ typedef struct s_objs
 
 typedef struct s_scene
 {
-	t_vec	col;
 	t_cam	cam;
 	t_light	*light;
 	t_amb	amb;
@@ -165,3 +164,6 @@ t_vec	calcul_color(t_scene *sc, t_hit_record hr, t_vec amb);
 t_hit_record find_hitpoint(t_ray *ray, t_objs *objs);
 t_hit_record hit_plane(t_hit_record saved, t_ray *ray, t_objs *pl);
 t_hit_record hit_sphere(t_hit_record saved, t_ray *ray, t_objs *sp);
+
+int	keybind(int keycode, t_minirt *data);
+int	ft_close(t_minirt *data);

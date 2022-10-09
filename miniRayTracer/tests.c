@@ -24,9 +24,6 @@ void print_objects(t_objs *objs)
 
 void print_scene(t_scene sc)
 {
-    printf("-------- color --------\n");
-    print_vec(sc.col);
-
     printf("-------- cam --------\n");
     printf("center >> "); print_vec(sc.cam.cen);
     printf("direction >> "); print_vec(sc.cam.dir);
