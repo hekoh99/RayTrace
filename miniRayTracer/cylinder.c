@@ -39,11 +39,11 @@ t_hit_record hit_cylinder(t_hit_record saved, t_ray *ray, t_objs *cy)
 	    		hr.t = t2;
     		else
 	    		hr.t = t1;
-	    	h1 = vdot(ray->dir, normalized) * t2 + vdot(oc, normalized);
-	    	h2 = vdot(ray->dir, normalized) * t1 + vdot(oc, normalized);
-	    	if (h1 >= EPS && h1 <= cy->p.y)
+	    	h1 = vdot(ray->dir, normalized) * t1 + vdot(oc, normalized);
+	    	h2 = vdot(ray->dir, normalized) * t2 + vdot(oc, normalized);
+	    	if (h2 >= EPS && h2 <= cy->p.y)
 		    	hr.t = t2;
-	    	else if (h2 >= EPS && h2 <= cy->p.y)
+	    	else if (h1 >= EPS && h1 <= cy->p.y)
 		    	hr.t = t1;
 	    	else
             	hr.t = -1.0;
@@ -61,6 +61,6 @@ t_hit_record hit_cylinder(t_hit_record saved, t_ray *ray, t_objs *cy)
 					vec_scalar_mul(oc, m)));
 		saved = hr;
 	}
-	// caps 만들기 //
+	// caps 추가 //
     return (saved);
 }
