@@ -29,6 +29,10 @@ t_hit_record find_hitpoint(t_ray *ray, t_objs *objs)
         {
             saved = hit_plane(saved, ray, tmp);
         }
+        else if (tmp->type == CY)
+        {
+            saved = hit_cylinder(saved, ray, tmp);
+        }
         tmp = tmp->next;
     }
     return (saved);
