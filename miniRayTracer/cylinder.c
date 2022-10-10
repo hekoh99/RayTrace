@@ -35,10 +35,6 @@ t_hit_record hit_cylinder(t_hit_record saved, t_ray *ray, t_objs *cy)
 		    hr.t = -1.0;
 		else
 		{
-			if (t1 > t2)
-	    		hr.t = t2;
-    		else
-	    		hr.t = t1;
 	    	h1 = vdot(ray->dir, normalized) * t1 + vdot(oc, normalized);
 	    	h2 = vdot(ray->dir, normalized) * t2 + vdot(oc, normalized);
 	    	if (h2 >= EPS && h2 <= cy->p.y)
