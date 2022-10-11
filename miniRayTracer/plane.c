@@ -1,12 +1,16 @@
 #include "minirt.h"
 
 t_hit_record hit_plane(t_hit_record saved, t_ray *ray, t_objs *pl)
-{   
+{
     t_hit_record hr;
     t_vec	x;
 	t_vec	normal;
 	double	b;
 	double	a;
+	if (pl->type == CY)
+	{
+		printf("%lf %lf %lf\n", pl->cen.x, pl->cen.y, pl->cen.z);
+	}
 
 	normal = unit_vec(pl->dir);
 	x = vec_sub(ray->origin, pl->cen);

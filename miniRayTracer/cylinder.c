@@ -1,5 +1,14 @@
 #include "minirt.h"
 
+t_hit_record hit_caps(t_hit_record saved, t_ray *ray, t_objs *cy)
+{
+	t_objs *top_cap;
+
+	top_cap = cy;
+	top_cap->cen = vec_scalar_mul(unit_vec(vec_sum(cy->cen, cy->dir)), cy->p.y);
+	return hit_plane(saved, ray, top_cap);
+}
+
 t_hit_record hit_cylinder(t_hit_record saved, t_ray *ray, t_objs *cy)
 {   
     t_hit_record hr;

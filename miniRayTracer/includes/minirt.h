@@ -165,6 +165,7 @@ t_hit_record find_hitpoint(t_ray *ray, t_objs *objs);
 t_hit_record hit_plane(t_hit_record saved, t_ray *ray, t_objs *pl);
 t_hit_record hit_sphere(t_hit_record saved, t_ray *ray, t_objs *sp);
 t_hit_record hit_cylinder(t_hit_record saved, t_ray *ray, t_objs *cy);
+t_hit_record hit_caps(t_hit_record saved, t_ray *ray, t_objs *cy);
 
 int	keybind(int keycode, t_minirt *data);
 int	ft_close(t_minirt *data);
