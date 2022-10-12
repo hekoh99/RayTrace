@@ -1,20 +1,5 @@
 #include "minirt.h"
 
-int	ft_close(t_minirt *data)
-{
-	mlx_clear_window(data->mlx.mlx, data->mlx.mlx_win);
-	mlx_destroy_window(data->mlx.mlx, data->mlx.mlx_win);
-	exit(0);
-}
-
-int	keybind(int keycode, t_minirt *data)
-{
-	printf("keycode=%d\n", keycode);
-	if (keycode == ESC)
-		ft_close(data);
-	return (0);
-}
-
 void	put_color(t_mlx *data, int x, int y, int color)
 {
 	char	*dst;
@@ -38,8 +23,8 @@ void	define_color(t_minirt *data)
 		x = 0;
 		while (x < WIDTH)
 		{
-			data->v = (double)x * 2 / WIDTH - 1;
-			data->u = (double)y * 2 / HEIGHT - 1;
+			data->u = (double)x * 2 / WIDTH - 1;
+			data->v = (double)y * 2 / HEIGHT - 1;
 			data->ray = ray_primary(&data->scene.cam, data->u, data->v); // 대강 이런식으로 구현할 것
 			data->ray.color = get_raycolor(data); // 대강 이런식으로 구현할 것
 			put_color(&data->mlx, x, HEIGHT - 1 - y,

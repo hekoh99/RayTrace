@@ -15,12 +15,7 @@ t_vec	add_color(t_vec col1, t_vec col2)
 	t_vec	res;
 
 	res = vec_sum(col1, col2);
-	if (res.x > 255)
-		res.x = 255;
-	if (res.y > 255)
-		res.y = 255;
-	if (res.z > 255)
-		res.z = 255;
+	res = vmin(res, create_vec(255, 255, 255));
 	return (res);
 }
 
@@ -36,6 +31,24 @@ t_vec diffuse(t_hit_record hr, t_light *light, double d)
 	return (diff);
 }
 
+int	shadow(t_scene *sc, t_hit_record hr, t_light *light)
+{
+	t_vec			hit_light;
+	t_ray		sh_ray;
+	t_hit_record		sh_hr;
+	t_vec		hit_sh;
+
+	hit_light = vec_sub(light->src, hr.p);
+	sh_ray.origin = hr.p;
+	sh_ray.dir = unit_vec(hit_light);
+	sh_hr = find_hitpoint(&sh_ray, sc->objs);
+	hit_sh = vec_sub(sh_hr.p, sh_ray.origin);
+	if (sh_hr.t > EPS && (vec_len(hit_light) > vec_len(hit_sh)))
+		return (1);
+	return (0);
+}
+
+
 t_vec	calcul_color(t_scene *sc, t_hit_record hr, t_vec amb)
 {
 	t_light		*light;
@@ -45,15 +58,19 @@ t_vec	calcul_color(t_scene *sc, t_hit_record hr, t_vec amb)
 
 	ret = create_vec(0, 0, 0);
 	light = sc->light;
-    // 그림자 구현 필
 	if (!light)
 		return (amb);
+	if (shadow(sc, hr, light))
+	{
+		ret = add_color(ret, amb);
+		// printf("shadow\n");
+	}
 	else
 	{
 		hit_light = vec_sub(light->src, hr.p);
 		d = vdot(unit_vec(hit_light), hr.normal);
 		ret = add_color(ret, amb);
-		if (d > 0)
+		if (d >= 0)
 			ret = add_color(ret, diffuse(hr, light, d));
 	}
 	return (ret);
