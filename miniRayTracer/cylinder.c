@@ -2,11 +2,28 @@
 
 t_hit_record hit_caps(t_hit_record saved, t_ray *ray, t_objs *cy)
 {
-	t_objs *top_cap;
+	t_objs top_cap;
+	t_hit_record hr;
 
-	top_cap = cy;
-	top_cap->cen = vec_scalar_mul(unit_vec(vec_sum(cy->cen, cy->dir)), cy->p.y);
-	return hit_plane(saved, ray, top_cap);
+	top_cap.cen.x = cy->p.y * cy->dir.x + cy->cen.x;
+	top_cap.cen.y = cy->p.y * cy->dir.y + cy->cen.y;
+	top_cap.cen.z = cy->p.y * cy->dir.z + cy->cen.z;
+	
+	top_cap.dir.x = cy->dir.x;
+	top_cap.dir.y = cy->dir.y;
+	top_cap.dir.z = cy->dir.z;
+
+	top_cap.col.x = cy->col.x;
+	top_cap.col.y = cy->col.y;
+	top_cap.col.z = cy->col.z;
+
+	hr = hit_plane(saved, ray, &top_cap);
+	if (powf(hr.p.x - top_cap.cen.x, 2.) + powf(hr.p.y - top_cap.cen.y, 2.) + powf(hr.p.z - top_cap.cen.z, 2.) <= powf(cy->p.x / 2, 2.))
+		saved = hr;
+	hr = hit_plane(saved, ray, cy);
+	if (powf(hr.p.x - cy->cen.x, 2.) + powf(hr.p.y - cy->cen.y, 2.) + powf(hr.p.z - cy->cen.z, 2.) <= powf(cy->p.x / 2, 2.))
+		saved = hr;
+	return (saved);
 }
 
 t_hit_record hit_cylinder(t_hit_record saved, t_ray *ray, t_objs *cy)
@@ -66,6 +83,5 @@ t_hit_record hit_cylinder(t_hit_record saved, t_ray *ray, t_objs *cy)
 					vec_scalar_mul(oc, m)));
 		saved = hr;
 	}
-	// caps 추가 //
     return (saved);
 }
