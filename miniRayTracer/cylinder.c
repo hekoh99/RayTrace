@@ -5,9 +5,15 @@ t_hit_record hit_caps(t_hit_record saved, t_ray *ray, t_objs *cy)
 	t_objs top_cap;
 	t_hit_record hr;
 
-	top_cap.cen.x = cy->p.y * cy->dir.x + cy->cen.x;
-	top_cap.cen.y = cy->p.y * cy->dir.y + cy->cen.y;
-	top_cap.cen.z = cy->p.y * cy->dir.z + cy->cen.z;
+	top_cap.cen.x = cy->dir.x;
+	top_cap.cen.y = cy->dir.y;
+	top_cap.cen.z = cy->dir.z;
+
+	top_cap.cen = unit_vec(top_cap.cen);
+
+	top_cap.cen.x = cy->p.y * top_cap.cen.x + cy->cen.x;
+	top_cap.cen.y = cy->p.y * top_cap.cen.y + cy->cen.y;
+	top_cap.cen.z = cy->p.y * top_cap.cen.z + cy->cen.z;
 	
 	top_cap.dir.x = cy->dir.x;
 	top_cap.dir.y = cy->dir.y;
