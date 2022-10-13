@@ -31,7 +31,7 @@ t_hit_record find_hitpoint(t_ray *ray, t_objs *objs)
         }
         else if (tmp->type == CY)
         {
-            // saved = hit_cylinder(saved, ray, tmp);
+            saved = hit_cylinder(saved, ray, tmp);
 	        saved = hit_caps(saved, ray, tmp);
         }
         tmp = tmp->next;
@@ -60,7 +60,7 @@ t_vec get_raycolor(t_minirt *data)
         {
             hr.normal = vec_scalar_mul(hr.normal, -1);
         }
-        color = calcul_color(&data->scene, hr, amb);
+        color = calcul_color(&data->scene, hr, amb, data->ray);
 		return (color);
 	}
 	return (vec_scalar_mul(data->scene.amb.col, data->scene.amb.ratio));
