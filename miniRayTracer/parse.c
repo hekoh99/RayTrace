@@ -27,7 +27,7 @@ int	check_file(int ac, char **av)
 
 void err_handler(char *msg)
 {
-    printf("Error : %s\n", msg);
+    printf("Error\n%s\n", msg);
 	exit(1);
 }
 
