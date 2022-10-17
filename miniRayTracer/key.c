@@ -11,7 +11,7 @@ int transpose(t_minirt *data, t_keycode keycode, int type, int *status) // objec
 		while (tmp)
 		{
 			if (tmp->type == type)
-				tmp->center.y += 5;
+				tmp->center.y += STEP;
 			tmp = tmp->next;
 		}
 		rt_render(data);
@@ -21,7 +21,7 @@ int transpose(t_minirt *data, t_keycode keycode, int type, int *status) // objec
 		while (tmp)
 		{
 			if (tmp->type == type)
-				tmp->center.x += 5;
+				tmp->center.x += STEP;
 			tmp = tmp->next;
 		}
 		rt_render(data);
@@ -31,7 +31,7 @@ int transpose(t_minirt *data, t_keycode keycode, int type, int *status) // objec
 		while (tmp)
 		{
 			if (tmp->type == type)
-				tmp->center.z += 5;
+				tmp->center.z += STEP;
 			tmp = tmp->next;
 		}
 		rt_render(data);
@@ -45,11 +45,11 @@ int transpose_light(t_minirt *data, t_keycode keycode, int *status)
 
 	*status = -1;
 	if (keycode == W)
-		light->src.y += 5;
+		light->src.y += STEP;
 	else if (keycode == A)
-		light->src.x += 5;
+		light->src.x += STEP;
 	else if (keycode == D)
-		light->src.z += 5;
+		light->src.z += STEP;
 	rt_render(data);
 	return (0);
 }
@@ -82,17 +82,17 @@ int cam_transpose(t_minirt *data, t_keycode keycode, int *status) // 1
 	*status = -1;
 	if (keycode == W)
 	{
-		data->scene.cam.cen.y += 5;		
+		data->scene.cam.cen.y += STEP;		
 		rt_render(data);
 	}
 	else if (keycode == A)
 	{
-		data->scene.cam.cen.x += 5;		
+		data->scene.cam.cen.x += STEP;		
 		rt_render(data);
 	}
 	if (keycode == D)
 	{
-		data->scene.cam.cen.z += 5;
+		data->scene.cam.cen.z += STEP;
 		rt_render(data);
 	}
 	return (0);
